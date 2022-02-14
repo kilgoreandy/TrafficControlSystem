@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 public class RedLight {
     private JPanel panel;
     private JPanel Light1;
@@ -16,8 +17,6 @@ public class RedLight {
     private JButton spawnCarAtLightButton2;
     private JButton spawnCarAtLightButton3;
     private TrafficPanel trafficPanel;
-
-
     public RedLight(){
         TrafficPanel t1 = new TrafficPanel();
         Light1.add(t1);
@@ -27,10 +26,55 @@ public class RedLight {
         Light3.add(t3);
         TrafficPanel t4 = new TrafficPanel();
         Light4.add(t4);
-
-
+        t1.Status = 1;
+        t2.Status = 2;
+        t3.Status = 1;
+        t4.Status = 2;
+        spawnCarAtLightButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()== spawnCarAtLightButton){
+                    t1.colorChange();
+                    t2.colorChange();
+                    t3.colorChange();
+                    t4.colorChange();
+                }
+            }
+        });
+        spawnCarAtLightButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()== spawnCarAtLightButton1){
+                    t1.colorChange();
+                    t2.colorChange();
+                    t3.colorChange();
+                    t4.colorChange();
+                }
+            }
+        });
+        spawnCarAtLightButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()== spawnCarAtLightButton2){
+                    t1.colorChange();
+                    t2.colorChange();
+                    t3.colorChange();
+                    t4.colorChange();
+                }
+            }
+        });
+        spawnCarAtLightButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()== spawnCarAtLightButton3){
+                    t1.colorChange();
+                    t2.colorChange();
+                    t3.colorChange();
+                    t4.colorChange();
+                }
+            }
+        });
     }
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("RedLight");
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
@@ -38,78 +82,49 @@ public class RedLight {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
     }
     }
 
 class TrafficPanel extends JPanel {
 
-    /** Variable to store the current state of the traffic light.
-     * @ lightState = 1 (Red)
-     * @ lightState = 3 (Yellow)
-     * @ lightState = 2 (Green)
-     */
-    private int lightState = 1;
+     int Status = 1;
 
     /**
      * This method repaints the light status
      */
-    public void changeColor() {
-        lightState++;
-
-        if (lightState > 3) {
-            lightState = 1;
+    public void colorChange() {
+        Status++;
+        if (Status > 2) {
+            Status = 1;
         }
         repaint();
     }
 
-    /**
-     * This method draws the traffic light on the screen
-     */
+    public void paint(Graphics g) {
+        super.paint(g);
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        // Draws the traffic light
-        // Draw inner black frame
+        //Set up the colors
         g.setColor(new Color(0,0,0));
         g.fillRoundRect(35,15,120,225,30,30);
-        //g.drawRoundRect(35,15,120,225,30,30);
-
-        // RED bulb dim
         g.setColor(new Color(90,0,0));
         g.fillOval(70,40,50,50);
-
-        // YELLOW bulb dim
         g.setColor(new Color(90,90,0));
         g.fillOval(70,100,50,50);
-
-        // GREEN bulb dim
         g.setColor(new Color(0,60,0));
         g.fillOval(70,160,50,50);
-
-
-        switch (lightState) {
+       //Switch the light color based on the status
+        switch (Status) {
             case 1:
-                // RED bulb glows
                 g.setColor(new Color(255, 0, 0));
                 g.fillOval(70, 40, 50, 50);
                 break;
-
-            case 3:
-                // YELLOW bulb glows
-                g.setColor(new Color(255, 255, 0));
-                g.fillOval(70, 100, 50, 50);
-                break;
-
             case 2:
-                // GREEN bulb glows
                 g.setColor(new Color(0, 255, 0));
                 g.fillOval(70, 160, 50, 50);
                 break;
-
         }
     }
+
 }
 
 

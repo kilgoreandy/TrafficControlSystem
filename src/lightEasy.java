@@ -24,9 +24,6 @@ public class lightEasy extends JFrame implements ActionListener {
     private TrafficPanel trafficPanel3;
     private TrafficPanel trafficPanel4;
 
-    /**
-     * This constructor initialize the state of the traffic light.
-     */
     public lightEasy() {
         mainFrame = new JFrame("Traffic Light");
         jpanel1 = new JPanel();
@@ -43,10 +40,6 @@ public class lightEasy extends JFrame implements ActionListener {
         SpawnCar4 = new JButton("Spawn Car at Light");
     }
 
-    /**
-     * Method to add the GUI components to the frame, arrange them,
-     * and makes the frame visible to the user.
-     */
     public void launchApp()	{
         mainFrame.setSize(200,350);
 
@@ -75,7 +68,6 @@ public class lightEasy extends JFrame implements ActionListener {
         mainFrame.getContentPane().add(trafficPanel2);
 
 
-        // Adding panel to lower frame
         mainFrame.getContentPane().add(jpanel1, BorderLayout.SOUTH);
         mainFrame.getContentPane().add(jpanel2, BorderLayout.EAST);
 
@@ -84,9 +76,6 @@ public class lightEasy extends JFrame implements ActionListener {
         mainFrame.setVisible(true);
     }
 
-    /**
-     * This the driver program
-     */
     public static void main(String args[]) {
         lightEasy l1 = new lightEasy();
         l1.launchApp();
@@ -100,7 +89,7 @@ public class lightEasy extends JFrame implements ActionListener {
         // Rotate button is clicked
         if (e.getSource() == SpawnCar1) {
             // Change the color displayed
-            trafficPanel.changeColor();
+            trafficPanel.colorChange();
         }
     }
 } // End of class lightEasy
